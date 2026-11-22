@@ -48,6 +48,23 @@
     background: transparent; color: var(--muted); transition: background-color .3s ease, color .3s ease; }
   .switch button[aria-pressed="true"] { background: var(--green); color: var(--l4t); }
   .switch button:not([aria-pressed="true"]):hover { color: var(--text); }
+  .avatar-btn { padding: 0; border: 0; background: none; border-radius: 50%; cursor: zoom-in; flex-shrink: 0; }
+  .avatar-btn .avatar { display: block; transition: transform .3s ease, box-shadow .3s ease; }
+  .avatar-btn:hover .avatar, .avatar-btn:focus-visible .avatar { transform: scale(1.05); }
+  .avatar-btn:focus-visible { outline: none; }
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: none; max-height: none; overflow: visible;
+    opacity: 0; transform: scale(.94); transition: opacity .3s ease, transform .3s ease; }
+  .lightbox.show { opacity: 1; transform: none; }
+  .lightbox::backdrop { background: rgba(5,5,8,.8); backdrop-filter: blur(6px); }
+  html[data-theme="business"] .lightbox::backdrop { background: rgba(22,32,46,.55); }
+  .lightbox figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+  .lightbox img { display: block; width: min(80vw, 80vh, 640px); height: auto; aspect-ratio: 1; border-radius: 20px; cursor: zoom-out; }
+  .lightbox figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 6px 2px; color: var(--text); font-weight: 500; }
+  .lightbox figcaption span { color: var(--muted); font-weight: 400; font-size: 14px; }
+  .lb-close { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--badge); color: var(--text);
+    font-size: 20px; line-height: 1; cursor: pointer; transition: background-color .3s ease, color .3s ease, border-color .3s ease; flex-shrink: 0; }
+  .lb-close:hover, .lb-close:focus-visible { background: var(--soft); border-color: var(--ring); color: var(--green); outline: none; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -147,7 +164,7 @@
 <div class="wrap">
 
   <div class="top">
-    <img class="avatar" id="avatar" src="avatar.png" alt="Мельников Сергей" width="84" height="84">
+    <button type="button" class="avatar-btn" id="avatarBtn" aria-label="Открыть фото крупнее"><img class="avatar" id="avatar" src="avatar.jpg" alt="Мельников Сергей" width="84" height="84"></button>
     <div class="who">
       <h1>Мельников Сергей Андреевич</h1>
       <div class="sub">Инженер по пусконаладке и испытаниям · г. Зеленоград</div>
@@ -297,12 +314,20 @@
     </div>
   </section>
 
+  <dialog class="lightbox" id="lightbox" aria-label="Фото">
+    <figure>
+      <img id="lbImg" src="avatar.jpg" alt="Мельников Сергей Андреевич" width="640" height="640">
+      <figcaption><div>Мельников Сергей Андреевич<br><span>Инженер по пусконаладке и испытаниям</span></div>
+        <button type="button" class="lb-close" id="lbClose" aria-label="Закрыть">×</button></figcaption>
+    </figure>
+  </dialog>
+
   <footer>Буду рад обсудить возможности сотрудничества!</footer>
 </div>
 <script>
   (function () {
     var root = document.documentElement, img = document.getElementById("avatar");
-    var pics = { tech: "avatar.png", business: "avatar-business.png" };
+    var pics = { tech: "avatar.jpg", business: "avatar-business.jpg" };
     function apply(t, save) {
       if (t === "business") root.setAttribute("data-theme", "business"); else root.removeAttribute("data-theme");
       img.src = pics[t];
@@ -313,6 +338,15 @@
     document.querySelectorAll(".switch button").forEach(function (b) {
       b.addEventListener("click", function () { apply(b.dataset.set, true); });
     });
+    var lb = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg");
+    function closeLb() { lb.classList.remove("show"); setTimeout(function () { if (lb.open) lb.close(); }, 300); }
+    document.getElementById("avatarBtn").addEventListener("click", function () {
+      lbImg.src = img.src; lb.showModal(); requestAnimationFrame(function () { lb.classList.add("show"); });
+    });
+    document.getElementById("lbClose").addEventListener("click", closeLb);
+    lbImg.addEventListener("click", closeLb);
+    lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+    lb.addEventListener("cancel", function (e) { e.preventDefault(); closeLb(); });
     new Image().src = pics.business; new Image().src = pics.tech;
   })();
 </script>
