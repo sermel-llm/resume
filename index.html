@@ -43,11 +43,13 @@
   html[data-theme="business"] .row, html[data-theme="business"] .stat, html[data-theme="business"] .panel, html[data-theme="business"] .tile
     { border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16,24,40,.04); }
   body, .row, .stat, .panel, .tile, .pill, .badge, .chip { transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
-  .switch { display: inline-flex; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
-  .switch button { font: inherit; font-size: 13px; font-weight: 500; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer;
-    background: transparent; color: var(--muted); transition: background-color .3s ease, color .3s ease; }
-  .switch button[aria-pressed="true"] { background: var(--green); color: var(--l4t); }
-  .switch button:not([aria-pressed="true"]):hover { color: var(--text); }
+  .switch { display: inline-flex; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; }
+  .switch button { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--dim); background: transparent; color: var(--muted);
+    display: grid; place-items: center; padding: 0; cursor: pointer;
+    transition: background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease; }
+  .switch svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .switch button[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--l4t); box-shadow: 0 0 10px var(--soft); }
+  .switch button:not([aria-pressed="true"]):hover, .switch button:focus-visible { border-color: var(--ring); color: var(--green); outline: none; }
   .avatar-btn { padding: 0; border: 0; background: none; border-radius: 50%; cursor: zoom-in; flex-shrink: 0; }
   .avatar-btn .avatar { display: block; transition: transform .3s ease, box-shadow .3s ease; }
   .avatar-btn:hover .avatar, .avatar-btn:focus-visible .avatar { transform: scale(1.05); }
@@ -95,6 +97,7 @@
   .stat .val { font-size: 24px; font-weight: 600; margin: 6px 0 2px; letter-spacing: -.01em; }
   .stat .cap { color: var(--muted); font-size: 12.5px; }
   @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .wrap { position: relative; padding-top: 32px; } .top .switch { position: absolute; top: 56px; right: 16px; } }
 
   .sec-title { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
   .sec-sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
@@ -151,61 +154,55 @@
   .facts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
   footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 8px; }
-  @page { size: A4; margin: 10mm 11mm; }
+  @page { size: A4; margin: 0; }
   @media print {
-    :root, :root[data-theme="business"] {
-      --bg: #fff; --card: #fff; --row: #fff; --line: #dcdfe5; --text: #111; --muted: #555; --dim: #999;
-      --p: #222; --li: #222; --badge: #f1f3f6; --soft: #eef2f8;
-      -webkit-print-color-adjust: exact; print-color-adjust: exact;
-    }
-    :root, :root[data-theme="business"] { --green: #0c7a57; --l4: #0c7a57; --l3: #3d9c7c; --l2: #cfe9de; --l2t: #0b3d2c; --l1: #eaf5f0; --l1t: #0b3d2c; }
-    body { font-size: 9pt; line-height: 1.35; background: #fff; }
-    *, *::before { transition: none !important; box-shadow: none !important; }
-    .no-print, .switch, .lightbox, footer, .sec-sub, .ico, .lg, .legend, .badge.now::before { display: none !important; }
-    .wrap { max-width: none; padding: 0; }
+    html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg); }
+    body { font-size: 8.5pt; line-height: 1.38; }
+    *, *::before { transition: none !important; }
+    .no-print, .switch, .lightbox, footer, .sec-sub, .legend { display: none !important; }
+    .wrap { max-width: none; padding: 8mm 10mm 4mm; position: relative; zoom: .94; }
 
-    .top { margin: 0 0 4mm; gap: 4mm; flex-wrap: nowrap; }
-    .avatar { width: 20mm; height: 20mm; box-shadow: none !important; border: 1px solid var(--line); }
+    .top { margin: 0 0 3mm; gap: 4mm; flex-wrap: nowrap; }
+    .avatar { width: 17mm; height: 17mm; box-shadow: 0 0 0 1.5px var(--bg), 0 0 0 2.6px var(--green); }
     .avatar-btn .avatar { transform: none !important; }
-    h1 { font-size: 16pt; }
-    .sub { font-size: 10pt; }
-    .contacts { position: absolute; top: 0; right: 0; flex-direction: column; align-items: flex-end; gap: 1mm; margin: 0; }
-    .wrap { position: relative; }
-    .contacts .pill { border: 0; padding: 0; background: none; font-size: 9pt; }
-    .contacts .pill svg { width: 9pt; height: 9pt; }
+    h1 { font-size: 15pt; }
+    .sub { font-size: 9.5pt; }
+    .contacts { position: absolute; top: 8mm; right: 10mm; flex-direction: column; align-items: flex-end; gap: 1.5mm; margin: 0; }
+    .contacts .pill { font-size: 8.5pt; padding: 1mm 3mm; }
+    .contacts .pill svg { width: 8.5pt; height: 8.5pt; }
 
-    .stats { grid-template-columns: repeat(4, 1fr); gap: 2mm; margin: 0 0 3.5mm; }
-    .stat { padding: 1.5mm 3mm; border: 1px solid var(--line); border-radius: 2.5mm; }
-    .stat .lbl { font-size: 7.5pt; } .stat .lbl svg { display: none; }
-    .stat .val { font-size: 12pt; margin: 0; } .stat .cap { font-size: 7.5pt; }
+    .stats { gap: 2.5mm; margin: 0 0 2.8mm; }
+    .stat { padding: 2mm 3mm; border-radius: 3mm; }
+    .stat .lbl { font-size: 7.5pt; } .stat .lbl svg { width: 7.5pt; height: 7.5pt; }
+    .stat .val { font-size: 13pt; margin: .5mm 0 0; } .stat .cap { font-size: 7pt; }
 
-    section { margin: 0 0 3.5mm; }
-    .sec-title { font-size: 10.5pt; margin: 0 0 1.5mm; padding-bottom: 1mm; border-bottom: 1.5px solid var(--green); color: var(--text); }
-    .panel { padding: 0; border: 0 !important; border-radius: 0; }
-    .panel p { margin: 0 0 1mm; }
+    section { margin: 0 0 2.4mm; }
+    .sec-title { font-size: 10pt; margin: 0 0 1.4mm; }
+    .panel { padding: 2.5mm 4mm; border-radius: 4mm; }
+    .panel-head { margin: 0 0 1.2mm; }
+    .panel p { margin: 0 0 .8mm; line-height: 1.33; }
 
-    .row { display: grid; grid-template-columns: 1fr auto; gap: 0 3mm; padding: 0 0 2mm; margin: 0 0 2mm;
-           border: 0 !important; border-bottom: 1px solid var(--line) !important; border-radius: 0; break-inside: avoid; }
-    .row:last-child { border-bottom: 0 !important; margin-bottom: 0; }
-    .row h3 { font-size: 10pt; font-weight: 600; margin: 0; }
-    .meta { font-size: 8.5pt; }
-    .badge { padding: 0; background: none; font-size: 8.5pt; font-weight: 600; color: var(--muted); }
-    .row ul { margin: 1mm 0 0; }
-    .row li { font-size: 8.5pt; margin: .4mm 0; padding-left: 3mm; }
-    .row li::before { width: 1.2mm; height: 1.2mm; left: 0; top: .55em; }
-    .role { margin-top: 1.2mm; padding-top: 1.2mm; }
-    .role-h { font-size: 9pt; } .role-h span { font-size: 8pt; }
+    .row { border-radius: 4mm; padding: 1.8mm 3.5mm 1.8mm 2.5mm; margin: 0 0 1.5mm; gap: 2.5mm;
+           grid-template-columns: 7.5mm 1fr auto; break-inside: avoid; }
+    .ico { width: 7.5mm; height: 7.5mm; } .ico svg { width: 3.8mm; height: 3.8mm; }
+    .row h3 { font-size: 9.5pt; margin: 0; font-weight: 600; }
+    .meta { font-size: 8pt; }
+    .badge { padding: .7mm 2.5mm; font-size: 7.5pt; }
+    .badge.now::before { width: 1.6mm; height: 1.6mm; }
+    .row ul { margin: .8mm 0 0; }
+    .row li { font-size: 8pt; margin: .3mm 0; padding-left: 3mm; }
+    .row li::before { width: 1.2mm; height: 1.2mm; left: .3mm; top: .58em; }
+    .role { margin-top: 1mm; padding-top: 1mm; }
+    .role-h { font-size: 8.5pt; } .role-h span { font-size: 7.5pt; }
 
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 1mm 5mm; }
-    .tile { padding: 0; gap: 0; border: 0 !important; border-radius: 0; }
-    .tile h4 { font-size: 9pt; display: inline; } .tile h4::after { content: " — "; font-weight: 400; }
-    .tile p { font-size: 8.5pt; display: inline; color: var(--p); }
+    .grid { gap: 1.8mm; }
+    .tile { padding: 2mm 2.5mm; border-radius: 3.5mm; gap: 2.2mm; break-inside: avoid; }
+    .tile .ico { width: 6.5mm; height: 6.5mm; } .tile .ico svg { width: 3.2mm; height: 3.2mm; }
+    .tile h4 { font-size: 8.5pt; margin: 0; } .tile p { font-size: 7.8pt; }
 
-    .panel-head { margin: 0 0 1.5mm; }
     .chips { gap: 1.2mm; }
-    .chip { padding: .6mm 2.2mm; font-size: 8pt; border-radius: 1.5mm; }
-    .facts { margin-top: 2mm; gap: 4mm; }
-    .facts .badge { font-weight: 500; color: var(--text); }
+    .chip { padding: .6mm 2.2mm; font-size: 7.8pt; border-radius: 1.6mm; }
+    .facts { margin-top: 1.5mm; gap: 1.5mm; }
   }
 </style>
 </head>
@@ -219,8 +216,8 @@
       <div class="sub">Инженер по пусконаладке и испытаниям · г. Зеленоград</div>
     </div>
     <div class="switch no-print" role="group" aria-label="Стиль страницы">
-      <button type="button" data-set="tech">Технический</button>
-      <button type="button" data-set="business">Деловой</button>
+      <button type="button" data-set="tech" title="Технический — тёмная тема" aria-label="Технический стиль, тёмная тема"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button type="button" data-set="business" title="Деловой — светлая тема" aria-label="Деловой стиль, светлая тема"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     </div>
   </div>
 
@@ -250,9 +247,8 @@
   </div>
 
   <section>
-    <h2 class="sec-title">Обо мне</h2>
-    <p class="sec-sub">Коротко о подходе к работе</p>
     <div class="panel">
+      <div class="panel-head"><div><h2 class="sec-title">Обо мне</h2><p class="sec-sub" style="margin:0">Коротко о подходе к работе</p></div></div>
       <p>Прошёл путь в промышленности от оператора автоматических линий до инженера и видел работу оборудования с разных сторон: эксплуатацию, наладку, диагностику, ремонт и ИТ-сопровождение. Владею модульным и компонентным ремонтом электроники, монтажом SMD-компонентов и работой со СКС.</p>
       <p>Стараюсь делать работу хорошо, а потом ещё лучше. Постоянно углубляю знания в смежных областях: ремонт электроники, программирование микроконтроллеров. Чувствую личную ответственность за качество продукции для заказчика и за технологический суверенитет страны.</p>
     </div>
