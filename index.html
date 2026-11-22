@@ -44,8 +44,11 @@
   .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
 
   .contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-  a.pill:hover { border-color: var(--dim); }
-  .pill svg { width: 15px; height: 15px; stroke: var(--muted); }
+  .pill svg { width: 15px; height: 15px; stroke: var(--muted); transition: stroke .3s ease; }
+  a.pill { transition: background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease; }
+  a.pill:hover, a.pill:focus-visible { background: rgba(16,196,138,.12); border-color: rgba(16,196,138,.45);
+    color: var(--green); box-shadow: 0 0 14px rgba(16,196,138,.15); outline: none; }
+  a.pill:hover svg, a.pill:focus-visible svg { stroke: var(--green); }
 
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
   .stat { background: var(--card); border-radius: 16px; padding: 16px 16px 14px; }
