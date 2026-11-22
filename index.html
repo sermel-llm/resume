@@ -151,12 +151,61 @@
   .facts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
   footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 8px; }
+  @page { size: A4; margin: 10mm 11mm; }
   @media print {
-    :root { --bg: #fff; --card: #fff; --row: #fff; --text: #000; --muted: #444; --line: #ccc; }
-    .no-print { display: none !important; }
-    .row, .panel, .stat, .tile { border: 1px solid #ddd; break-inside: avoid; }
-    .panel p, .row li { color: #222; }
-    .badge { background: #f2f2f2; }
+    :root, :root[data-theme="business"] {
+      --bg: #fff; --card: #fff; --row: #fff; --line: #dcdfe5; --text: #111; --muted: #555; --dim: #999;
+      --p: #222; --li: #222; --badge: #f1f3f6; --soft: #eef2f8;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    :root, :root[data-theme="business"] { --green: #0c7a57; --l4: #0c7a57; --l3: #3d9c7c; --l2: #cfe9de; --l2t: #0b3d2c; --l1: #eaf5f0; --l1t: #0b3d2c; }
+    body { font-size: 9pt; line-height: 1.35; background: #fff; }
+    *, *::before { transition: none !important; box-shadow: none !important; }
+    .no-print, .switch, .lightbox, footer, .sec-sub, .ico, .lg, .legend, .badge.now::before { display: none !important; }
+    .wrap { max-width: none; padding: 0; }
+
+    .top { margin: 0 0 4mm; gap: 4mm; flex-wrap: nowrap; }
+    .avatar { width: 20mm; height: 20mm; box-shadow: none !important; border: 1px solid var(--line); }
+    .avatar-btn .avatar { transform: none !important; }
+    h1 { font-size: 16pt; }
+    .sub { font-size: 10pt; }
+    .contacts { position: absolute; top: 0; right: 0; flex-direction: column; align-items: flex-end; gap: 1mm; margin: 0; }
+    .wrap { position: relative; }
+    .contacts .pill { border: 0; padding: 0; background: none; font-size: 9pt; }
+    .contacts .pill svg { width: 9pt; height: 9pt; }
+
+    .stats { grid-template-columns: repeat(4, 1fr); gap: 2mm; margin: 0 0 3.5mm; }
+    .stat { padding: 1.5mm 3mm; border: 1px solid var(--line); border-radius: 2.5mm; }
+    .stat .lbl { font-size: 7.5pt; } .stat .lbl svg { display: none; }
+    .stat .val { font-size: 12pt; margin: 0; } .stat .cap { font-size: 7.5pt; }
+
+    section { margin: 0 0 3.5mm; }
+    .sec-title { font-size: 10.5pt; margin: 0 0 1.5mm; padding-bottom: 1mm; border-bottom: 1.5px solid var(--green); color: var(--text); }
+    .panel { padding: 0; border: 0 !important; border-radius: 0; }
+    .panel p { margin: 0 0 1mm; }
+
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 0 3mm; padding: 0 0 2mm; margin: 0 0 2mm;
+           border: 0 !important; border-bottom: 1px solid var(--line) !important; border-radius: 0; break-inside: avoid; }
+    .row:last-child { border-bottom: 0 !important; margin-bottom: 0; }
+    .row h3 { font-size: 10pt; font-weight: 600; margin: 0; }
+    .meta { font-size: 8.5pt; }
+    .badge { padding: 0; background: none; font-size: 8.5pt; font-weight: 600; color: var(--muted); }
+    .row ul { margin: 1mm 0 0; }
+    .row li { font-size: 8.5pt; margin: .4mm 0; padding-left: 3mm; }
+    .row li::before { width: 1.2mm; height: 1.2mm; left: 0; top: .55em; }
+    .role { margin-top: 1.2mm; padding-top: 1.2mm; }
+    .role-h { font-size: 9pt; } .role-h span { font-size: 8pt; }
+
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 1mm 5mm; }
+    .tile { padding: 0; gap: 0; border: 0 !important; border-radius: 0; }
+    .tile h4 { font-size: 9pt; display: inline; } .tile h4::after { content: " — "; font-weight: 400; }
+    .tile p { font-size: 8.5pt; display: inline; color: var(--p); }
+
+    .panel-head { margin: 0 0 1.5mm; }
+    .chips { gap: 1.2mm; }
+    .chip { padding: .6mm 2.2mm; font-size: 8pt; border-radius: 1.5mm; }
+    .facts { margin-top: 2mm; gap: 4mm; }
+    .facts .badge { font-weight: 500; color: var(--text); }
   }
 </style>
 </head>
