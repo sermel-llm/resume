@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мельников Сергей — резюме</title>
+<meta name="description" content="Мельников Сергей Андреевич — инженер по пусконаладке и испытаниям. Электроника, ИТ, промышленное оборудование.">
+<style>
+  :root {
+    --bg: #f5f6f8; --card: #fff; --text: #1d2330; --muted: #5d6677;
+    --accent: #1f5fbf; --line: #e3e6ec; --chip: #eef3fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #12151b; --card: #1b2029; --text: #e6e9ef; --muted: #9aa3b2;
+            --accent: #6ea2ff; --line: #2a313d; --chip: #222b3a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+  header.card { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; margin-bottom: 20px; }
+  h1 { margin: 0; font-size: 30px; line-height: 1.2; }
+  .role { color: var(--accent); font-weight: 600; margin: 6px 0 4px; font-size: 18px; }
+  .muted { color: var(--muted); }
+  .contacts { display: flex; flex-direction: column; gap: 8px; }
+  .btn { display: inline-block; padding: 9px 16px; border-radius: 9px; text-decoration: none;
+         border: 1px solid var(--accent); color: var(--accent); font-weight: 600; text-align: center; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  h2 { font-size: 20px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .job { margin-bottom: 26px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
+  .company { font-weight: 700; font-size: 17px; }
+  .pos { font-weight: 600; }
+  .date { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  ul { margin: 6px 0 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+  .now { display: inline-block; font-size: 12px; background: var(--accent); color: #fff;
+         border-radius: 6px; padding: 1px 8px; margin-left: 8px; vertical-align: middle; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: var(--chip); border-radius: 999px; padding: 5px 12px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .grid h3 { margin: 0 0 6px; font-size: 16px; }
+  .grid p { margin: 0; color: var(--muted); font-size: 15px; }
+  footer { text-align: center; color: var(--muted); font-size: 14px; }
+  @media print {
+    body { background: #fff; color: #000; }
+    .card { border: none; padding: 8px 0; margin: 0; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="card">
+    <div>
+      <h1>Мельников Сергей Андреевич</h1>
+      <div class="role">Инженер по пусконаладке и испытаниям</div>
+      <div class="muted">г. Зеленоград · дата рождения 06.04.1993</div>
+    </div>
+    <div class="contacts">
+      <a class="btn primary" href="tel:+79175523439">+7 917 552-34-39</a>
+      <a class="btn" href="mailto:melnikov.partner@gmail.com">melnikov.partner@gmail.com</a>
+      <a class="btn no-print" href="#" onclick="window.print();return false;">Сохранить в PDF</a>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>Обо мне</h2>
+    <p>Прошёл путь в промышленности от оператора автоматических линий до инженера — видел работу с оборудованием с разных сторон: эксплуатация, наладка, диагностика, ремонт и ИТ-сопровождение. Владею модульным и компонентным ремонтом электроники, монтажом SMD-компонентов и работой со СКС.</p>
+    <p>Стремлюсь делать работу хорошо, а затем — ещё лучше. Постоянно углубляю знания в смежных областях (ремонт электроники, программирование микроконтроллеров) и чувствую личную ответственность за качество продукции для заказчика и технологического суверенитета страны.</p>
+  </section>
+
+  <section class="card">
+    <h2>Опыт работы</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="company">АО «НИИТМ» <span class="now">сейчас</span></div>
+        <div class="date">июнь 2024 — н.в.</div>
+      </div>
+      <div class="pos">Инженер по пусконаладке и испытаниям 3 категории</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="company">ООО «ССТ»</div>
+        <div class="date">март 2022 — 2024</div>
+      </div>
+      <div class="sub">НИОКР в области силовой электроники</div>
+      <div class="pos">Специалист по ИТ</div>
+      <ul>
+        <li>ИТ-сопровождение 53 пользователей в офисе и удалённо (software, hardware)</li>
+        <li>Поддержка ИТ-инфраструктуры и оргтехники — 50 единиц оборудования (39 ПК, 5 серверов, 6 МФУ)</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="company">АО «Микрон»</div>
+        <div class="date">февраль 2020 — 2024</div>
+      </div>
+      <div class="sub">Цех 3, сборочное производство RFID-изделий и чип-модулей</div>
+
+      <div class="job-head" style="margin-top:12px">
+        <div class="pos">Инженер-программист / Техник</div>
+        <div class="date">сентябрь 2021 — 2024</div>
+      </div>
+      <ul>
+        <li>Поддержка 74 пользователей и сотрудников смен (software, hardware)</li>
+        <li>Поддержка ИТ-инфраструктуры — 101 единица оборудования (78 ПК, 7 серверов, 6 свичей, 10 МФУ)</li>
+        <li>Бесперебойная работа установок в части ИТ: 63 компьютера в составе 31 единицы оборудования (ППР, диагностика и ремонт, резервное копирование)</li>
+      </ul>
+
+      <div class="job-head" style="margin-top:14px">
+        <div class="pos">Монтажник РЭА</div>
+        <div class="date">февраль 2020 — сентябрь 2021</div>
+      </div>
+      <ul>
+        <li>Проект гарантийного ремонта датчиков освещённости по заказу города</li>
+        <li>Диагностика и компонентный ремонт плат (норма — 250 ед. за смену)</li>
+        <li>Сквозной и поверхностный монтаж: SMD от 0402, корпуса QFN, STM32 на 100 выводов</li>
+      </ul>
+
+      <div class="job-head" style="margin-top:14px">
+        <div class="pos">Оператор автоматических установок</div>
+        <div class="date">сентябрь 2020 — февраль 2021</div>
+      </div>
+      <ul>
+        <li>Обеспечение работы 5 многомодульных линий Muhlbauer TAL10000 (Германия) по производству инлея для БСК</li>
+        <li>Выпуск ~500 000 единиц продукции за смену с выходом годных не менее 98,5%</li>
+        <li>Замена расходных материалов, наладка оборудования, участие в ППР и ремонтах совместно с ИТР</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Дополнительные проекты</h2>
+    <div class="grid">
+      <div><h3>БПЛА</h3><p>Проект развития компетенций сотрудников ОПК: эксплуатация и обслуживание дронов «Геоскан Пионер»</p></div>
+      <div><h3>Выставки</h3><p>Монтаж, демонтаж и наладка стенда умного турникета с RFID-ридерами и контроллерами (ExpoElectronica, «Армия России»)</p></div>
+      <div><h3>Серверы</h3><p>Гарантийная поддержка 90+ серверов PowerEdge R740XD: диагностика и модульный ремонт</p></div>
+      <div><h3>Обучение</h3><p>Проведение учебных практик для студентов СПО</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Навыки</h2>
+    <div class="chips">
+      <span class="chip">Пусконаладка и испытания</span>
+      <span class="chip">Диагностика и компонентный ремонт</span>
+      <span class="chip">Пайка SMD / THT, QFN</span>
+      <span class="chip">Наладка автоматических линий</span>
+      <span class="chip">ППР оборудования</span>
+      <span class="chip">ИТ-инфраструктура, серверы</span>
+      <span class="chip">СКС, обжим и прокладка кабелей</span>
+      <span class="chip">Микроконтроллеры STM32</span>
+      <span class="chip">Эксплуатация БПЛА</span>
+    </div>
+    <p style="margin-top:18px"><b>Английский:</b> B1 — средний<br><b>Служба в ВС РФ:</b> 09.2012 — 01.2015</p>
+  </section>
+
+  <footer>Буду рад обсудить возможности сотрудничества!</footer>
+</div>
+</body>
+</html>
