@@ -5,170 +5,254 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Мельников Сергей — резюме</title>
 <meta name="description" content="Мельников Сергей Андреевич — инженер по пусконаладке и испытаниям. Электроника, ИТ, промышленное оборудование.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f6f8; --card: #fff; --text: #1d2330; --muted: #5d6677;
-    --accent: #1f5fbf; --line: #e3e6ec; --chip: #eef3fb;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #12151b; --card: #1b2029; --text: #e6e9ef; --muted: #9aa3b2;
-            --accent: #6ea2ff; --line: #2a313d; --chip: #222b3a; }
+    --bg: #0b0a0d; --card: #17161b; --row: #1c1b21; --line: #2a2930;
+    --text: #f2f2f4; --muted: #9b9aa3; --dim: #6c6b74;
+    --green: #10c48a; --blue: #2aa8e0; --violet: #8b5cf6; --amber: #f5b014; --pink: #f0386b; --orange: #ff7a1a;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
-         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
-  header.card { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; margin-bottom: 20px; }
-  h1 { margin: 0; font-size: 30px; line-height: 1.2; }
-  .role { color: var(--accent); font-weight: 600; margin: 6px 0 4px; font-size: 18px; }
-  .muted { color: var(--muted); }
-  .avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; border: 3px solid var(--line); flex-shrink: 0; }
+         font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+  a { color: inherit; }
+
+  .top { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; flex-wrap: wrap; }
+  .avatar { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: 50% 25%;
+            box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--green); flex-shrink: 0; }
   .who { flex: 1 1 260px; }
-  .contacts { display: flex; flex-direction: column; gap: 8px; }
-  .btn { display: inline-block; padding: 9px 16px; border-radius: 9px; text-decoration: none;
-         border: 1px solid var(--accent); color: var(--accent); font-weight: 600; text-align: center; }
-  .btn.primary { background: var(--accent); color: #fff; }
-  h2 { font-size: 20px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-  .job { margin-bottom: 26px; }
-  .job:last-child { margin-bottom: 0; }
-  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
-  .company { font-weight: 700; font-size: 17px; }
-  .pos { font-weight: 600; }
-  .date { color: var(--muted); font-size: 14px; white-space: nowrap; }
-  .sub { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
-  ul { margin: 6px 0 0; padding-left: 20px; }
-  li { margin: 4px 0; }
-  .now { display: inline-block; font-size: 12px; background: var(--accent); color: #fff;
-         border-radius: 6px; padding: 1px 8px; margin-left: 8px; vertical-align: middle; }
+  h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin-top: 2px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--line);
+          border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+  .contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  a.pill:hover { border-color: var(--dim); }
+  .pill svg { width: 15px; height: 15px; stroke: var(--muted); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
+  .stat { background: var(--card); border-radius: 16px; padding: 16px 16px 14px; }
+  .stat .lbl { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .stat .lbl svg { width: 14px; height: 14px; stroke: var(--muted); }
+  .stat .val { font-size: 24px; font-weight: 600; margin: 6px 0 2px; letter-spacing: -.01em; }
+  .stat .cap { color: var(--muted); font-size: 12.5px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  .sec-title { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+  .sec-sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  section { margin-bottom: 36px; }
+  .panel { background: var(--card); border-radius: 22px; padding: 22px; }
+  .panel p { margin: 0 0 10px; color: #d6d5db; }
+  .panel p:last-child { margin: 0; }
+
+  .row { background: var(--row); border-radius: 24px; padding: 14px 18px 14px 14px; margin-bottom: 10px;
+         display: grid; grid-template-columns: 48px 1fr auto; gap: 14px; align-items: start; }
+  .ico { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; }
+  .ico svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .c-green  { background: rgba(16,196,138,.12); } .c-green svg  { stroke: var(--green); }
+  .c-blue   { background: rgba(42,168,224,.12); } .c-blue svg   { stroke: var(--blue); }
+  .c-violet { background: rgba(139,92,246,.14); } .c-violet svg { stroke: var(--violet); }
+  .c-amber  { background: rgba(245,176,20,.12); } .c-amber svg  { stroke: var(--amber); }
+  .c-pink   { background: rgba(240,56,107,.12); } .c-pink svg   { stroke: var(--pink); }
+  .row h3 { margin: 2px 0 0; font-size: 16px; font-weight: 500; }
+  .meta { color: var(--muted); font-size: 13.5px; }
+  .meta b { color: var(--text); font-weight: 500; }
+  .badge { background: #0f0e12; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600;
+           white-space: nowrap; display: inline-flex; gap: 6px; align-items: center; color: var(--muted); }
+  .badge.now { color: var(--text); }
+  .badge.now::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }
+  .row ul { margin: 8px 0 2px; padding: 0; list-style: none; }
+  .row li { position: relative; padding-left: 16px; margin: 4px 0; color: #cfced5; font-size: 14px; }
+  .row li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--dim); }
+  .role { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .role-h { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 14.5px; font-weight: 500; }
+  .role-h span { color: var(--muted); font-weight: 400; font-size: 13px; }
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 40px 1fr; }
+    .ico { width: 40px; height: 40px; }
+    .row .badge { grid-column: 2; justify-self: start; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .tile { background: var(--card); border-radius: 18px; padding: 16px; display: flex; gap: 12px; }
+  .tile .ico { width: 38px; height: 38px; flex-shrink: 0; }
+  .tile .ico svg { width: 18px; height: 18px; }
+  .tile h4 { margin: 0 0 3px; font-size: 14.5px; font-weight: 600; }
+  .tile p { margin: 0; color: var(--muted); font-size: 13.5px; }
+
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { background: var(--chip); border-radius: 999px; padding: 5px 12px; font-size: 14px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-  .grid h3 { margin: 0 0 6px; font-size: 16px; }
-  .grid p { margin: 0; color: var(--muted); font-size: 15px; }
-  footer { text-align: center; color: var(--muted); font-size: 14px; }
+  .chip { border-radius: 10px; padding: 6px 12px; font-size: 13.5px; font-weight: 500; }
+  .l4 { background: var(--green); color: #04140e; }
+  .l3 { background: #0c8f64; color: #eafff6; }
+  .l2 { background: #0d5a41; color: #d7f5ea; }
+  .l1 { background: #123a2e; color: #b9dccf; }
+  .legend { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 12px; }
+  .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .facts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 8px; }
   @media print {
-    body { background: #fff; color: #000; }
-    .card { border: none; padding: 8px 0; margin: 0; }
-    .no-print { display: none; }
+    :root { --bg: #fff; --card: #fff; --row: #fff; --text: #000; --muted: #444; --line: #ccc; }
+    .no-print { display: none !important; }
+    .row, .panel, .stat, .tile { border: 1px solid #ddd; break-inside: avoid; }
+    .panel p, .row li { color: #222; }
+    .badge { background: #f2f2f2; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="card">
-    <img class="avatar" src="avatar.png" alt="Мельников Сергей" width="140" height="140">
+  <div class="top">
+    <img class="avatar" src="avatar.png" alt="Мельников Сергей" width="84" height="84">
     <div class="who">
       <h1>Мельников Сергей Андреевич</h1>
-      <div class="role">Инженер по пусконаладке и испытаниям</div>
-      <div class="muted">г. Зеленоград · дата рождения 06.04.1993</div>
+      <div class="sub">Инженер по пусконаладке и испытаниям · г. Зеленоград</div>
     </div>
-    <div class="contacts">
-      <a class="btn primary" href="tel:+79175523439">+7 917 552-34-39</a>
-      <a class="btn" href="mailto:melnikov.partner@gmail.com">melnikov.partner@gmail.com</a>
-      <a class="btn no-print" href="#" onclick="window.print();return false;">Сохранить в PDF</a>
+  </div>
+
+  <div class="contacts">
+    <a class="pill" href="tel:+79175523439"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>+7 917 552-34-39</a>
+    <a class="pill" href="mailto:melnikov.partner@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>melnikov.partner@gmail.com</a>
+    <a class="pill no-print" href="#" onclick="window.print();return false;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg>Скачать PDF</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Опыт</div>
+      <div class="val">6+ лет</div><div class="cap">в промышленности</div>
     </div>
-  </header>
-
-  <section class="card">
-    <h2>Обо мне</h2>
-    <p>Прошёл путь в промышленности от оператора автоматических линий до инженера — видел работу с оборудованием с разных сторон: эксплуатация, наладка, диагностика, ремонт и ИТ-сопровождение. Владею модульным и компонентным ремонтом электроники, монтажом SMD-компонентов и работой со СКС.</p>
-    <p>Стремлюсь делать работу хорошо, а затем — ещё лучше. Постоянно углубляю знания в смежных областях (ремонт электроники, программирование микроконтроллеров) и чувствую личную ответственность за качество продукции для заказчика и технологического суверенитета страны.</p>
-  </section>
-
-  <section class="card">
-    <h2>Опыт работы</h2>
-
-    <div class="job">
-      <div class="job-head">
-        <div class="company">АО «НИИТМ» <span class="now">сейчас</span></div>
-        <div class="date">июнь 2024 — н.в.</div>
-      </div>
-      <div class="pos">Инженер по пусконаладке и испытаниям 3 категории</div>
+    <div class="stat">
+      <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Оборудование</div>
+      <div class="val">150+</div><div class="cap">единиц на поддержке</div>
     </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div class="company">ООО «ССТ»</div>
-        <div class="date">март 2022 — май 2024</div>
-      </div>
-      <div class="sub">НИОКР в области силовой электроники</div>
-      <div class="pos">Специалист по ИТ</div>
-      <ul>
-        <li>ИТ-сопровождение 53 пользователей в офисе и удалённо (software, hardware)</li>
-        <li>Поддержка ИТ-инфраструктуры и оргтехники — 50 единиц оборудования (39 ПК, 5 серверов, 6 МФУ)</li>
-      </ul>
+    <div class="stat">
+      <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-7 1 2 3 3 3 3s1-4 0-8z"/></svg>Выпуск</div>
+      <div class="val">500K</div><div class="cap">изделий за смену</div>
     </div>
+    <div class="stat">
+      <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Выход годных</div>
+      <div class="val">98,5%</div><div class="cap">не ниже, на линиях</div>
+    </div>
+  </div>
 
-    <div class="job">
-      <div class="job-head">
-        <div class="company">АО «Микрон»</div>
-        <div class="date">февраль 2020 — май 2024</div>
-      </div>
-      <div class="sub">Цех 3, сборочное производство RFID-изделий и чип-модулей</div>
-
-      <div class="job-head" style="margin-top:12px">
-        <div class="pos">Инженер-программист</div>
-        <div class="date">сентябрь 2022 — май 2024</div>
-      </div>
-      <div class="job-head">
-        <div class="pos">Техник <span class="muted" style="font-weight:400">→ повышен до инженера-программиста</span></div>
-        <div class="date">сентябрь 2021 — сентябрь 2022</div>
-      </div>
-      <ul>
-        <li>Поддержка 74 пользователей и сотрудников смен (software, hardware)</li>
-        <li>Поддержка ИТ-инфраструктуры — 101 единица оборудования (78 ПК, 7 серверов, 6 свичей, 10 МФУ)</li>
-        <li>Бесперебойная работа установок в части ИТ: 63 компьютера в составе 31 единицы оборудования (ППР, диагностика и ремонт, резервное копирование)</li>
-      </ul>
-
-      <div class="job-head" style="margin-top:14px">
-        <div class="pos">Монтажник РЭА</div>
-        <div class="date">февраль 2020 — сентябрь 2021</div>
-      </div>
-      <div class="sub">В период работы оператором — внутреннее совмещение: приглашён монтажником РЭА на проект</div>
-      <ul>
-        <li>Проект гарантийного ремонта датчиков освещённости по заказу города</li>
-        <li>Диагностика и компонентный ремонт плат (норма — 250 ед. за смену)</li>
-        <li>Сквозной и поверхностный монтаж: SMD от 0402, корпуса QFN, STM32 на 100 выводов</li>
-      </ul>
-
-      <div class="job-head" style="margin-top:14px">
-        <div class="pos">Оператор автоматических установок</div>
-        <div class="date">сентябрь 2020 — февраль 2021</div>
-      </div>
-      <ul>
-        <li>Обеспечение работы 5 многомодульных линий Muhlbauer TAL10000 (Германия) по производству инлея для БСК</li>
-        <li>Выпуск ~500 000 единиц продукции за смену с выходом годных не менее 98,5%</li>
-        <li>Замена расходных материалов, наладка оборудования, участие в ППР и ремонтах совместно с ИТР</li>
-      </ul>
+  <section>
+    <h2 class="sec-title">Обо мне</h2>
+    <p class="sec-sub">Коротко о подходе к работе</p>
+    <div class="panel">
+      <p>Прошёл путь в промышленности от оператора автоматических линий до инженера и видел работу оборудования с разных сторон: эксплуатацию, наладку, диагностику, ремонт и ИТ-сопровождение. Владею модульным и компонентным ремонтом электроники, монтажом SMD-компонентов и работой со СКС.</p>
+      <p>Стараюсь делать работу хорошо, а потом ещё лучше. Постоянно углубляю знания в смежных областях: ремонт электроники, программирование микроконтроллеров. Чувствую личную ответственность за качество продукции для заказчика и за технологический суверенитет страны.</p>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Дополнительные проекты</h2>
+  <section>
+    <h2 class="sec-title">Опыт работы</h2>
+    <p class="sec-sub">2020 — сейчас</p>
+
+    <div class="row">
+      <div class="ico c-green"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+      <div>
+        <h3>АО «НИИТМ»</h3>
+        <div class="meta"><b>Инженер по пусконаладке и испытаниям 3 категории</b> · июнь 2024 — н.в.</div>
+      </div>
+      <span class="badge now">сейчас</span>
+    </div>
+
+    <div class="row">
+      <div class="ico c-blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+      <div>
+        <h3>ООО «ССТ»</h3>
+        <div class="meta"><b>Специалист по ИТ</b> · НИОКР в области силовой электроники</div>
+        <ul>
+          <li>ИТ-сопровождение 53 пользователей в офисе и удалённо (software, hardware)</li>
+          <li>Поддержка ИТ-инфраструктуры и оргтехники: 50 единиц (39 ПК, 5 серверов, 6 МФУ)</li>
+        </ul>
+      </div>
+      <span class="badge">03.2022 — 05.2024</span>
+    </div>
+
+    <div class="row">
+      <div class="ico c-violet"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div>
+      <div>
+        <h3>АО «Микрон»</h3>
+        <div class="meta">Цех 3 · сборочное производство RFID-изделий и чип-модулей</div>
+
+        <div class="role">
+          <div class="role-h">Инженер-программист <span>09.2022 — 05.2024</span></div>
+          <div class="role-h" style="margin-top:2px">Техник <span>09.2021 — 09.2022 · повышен</span></div>
+          <ul>
+            <li>Поддержка 74 пользователей и сотрудников смен (software, hardware)</li>
+            <li>ИТ-инфраструктура: 101 единица (78 ПК, 7 серверов, 6 свичей, 10 МФУ)</li>
+            <li>Бесперебойная работа установок в части ИТ: 63 компьютера в составе 31 единицы оборудования (ППР, диагностика и ремонт, резервное копирование)</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-h">Монтажник РЭА <span>02.2020 — 09.2021 · внутреннее совмещение</span></div>
+          <ul>
+            <li>Проект гарантийного ремонта датчиков освещённости по заказу города</li>
+            <li>Диагностика и компонентный ремонт плат (норма 250 ед. за смену)</li>
+            <li>Сквозной и поверхностный монтаж: SMD от 0402, корпуса QFN, STM32 на 100 выводов</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-h">Оператор автоматических установок <span>09.2020 — 02.2021</span></div>
+          <ul>
+            <li>Работа 5 многомодульных линий Muhlbauer TAL10000 (Германия) по производству инлея для БСК</li>
+            <li>Около 500 000 изделий за смену, выход годных не ниже 98,5%</li>
+            <li>Замена расходных материалов, наладка, участие в ППР и ремонтах совместно с ИТР</li>
+          </ul>
+        </div>
+      </div>
+      <span class="badge">02.2020 — 05.2024</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title">Дополнительные проекты</h2>
+    <p class="sec-sub">Сверх основных обязанностей</p>
     <div class="grid">
-      <div><h3>БПЛА</h3><p>Проект развития компетенций сотрудников ОПК: эксплуатация и обслуживание дронов «Геоскан Пионер»</p></div>
-      <div><h3>Выставки</h3><p>Монтаж, демонтаж и наладка стенда умного турникета с RFID-ридерами и контроллерами (ExpoElectronica, «Армия России»)</p></div>
-      <div><h3>Серверы</h3><p>Гарантийная поддержка 90+ серверов PowerEdge R740XD: диагностика и модульный ремонт</p></div>
-      <div><h3>Обучение</h3><p>Проведение учебных практик для студентов СПО</p></div>
+      <div class="tile"><div class="ico c-green"><svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="m7 7 3 3m4 0 3-3M7 17l3-3m4 0 3 3"/><rect x="10" y="10" width="4" height="4" rx="1"/></svg></div>
+        <div><h4>БПЛА</h4><p>Развитие компетенций сотрудников ОПК: эксплуатация и обслуживание дронов «Геоскан Пионер»</p></div></div>
+      <div class="tile"><div class="ico c-amber"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M12 16v4"/></svg></div>
+        <div><h4>Выставки</h4><p>Монтаж, демонтаж и наладка стенда умного турникета с RFID (ExpoElectronica, «Армия России»)</p></div></div>
+      <div class="tile"><div class="ico c-blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/></svg></div>
+        <div><h4>Серверы</h4><p>Гарантийная поддержка 90+ серверов PowerEdge R740XD: диагностика и модульный ремонт</p></div></div>
+      <div class="tile"><div class="ico c-pink"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+        <div><h4>Обучение</h4><p>Проведение учебных практик для студентов СПО</p></div></div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Навыки</h2>
-    <div class="chips">
-      <span class="chip">Пусконаладка и испытания</span>
-      <span class="chip">Диагностика и компонентный ремонт</span>
-      <span class="chip">Пайка SMD / THT, QFN</span>
-      <span class="chip">Наладка автоматических линий</span>
-      <span class="chip">ППР оборудования</span>
-      <span class="chip">ИТ-инфраструктура, серверы</span>
-      <span class="chip">СКС, обжим и прокладка кабелей</span>
-      <span class="chip">Микроконтроллеры STM32</span>
-      <span class="chip">Эксплуатация БПЛА</span>
+  <section>
+    <div class="panel">
+      <div class="panel-head">
+        <div><h2 class="sec-title">Навыки</h2><p class="sec-sub" style="margin:0">Цвет показывает глубину практики</p></div>
+        <div class="legend">Меньше <i style="background:#123a2e"></i><i style="background:#0d5a41"></i><i style="background:#0c8f64"></i><i style="background:var(--green)"></i> Больше</div>
+      </div>
+      <div class="chips">
+        <span class="chip l4">Диагностика и ремонт</span>
+        <span class="chip l4">ИТ-инфраструктура</span>
+        <span class="chip l4">Пайка SMD / THT, QFN</span>
+        <span class="chip l3">Наладка автоматических линий</span>
+        <span class="chip l3">ППР оборудования</span>
+        <span class="chip l3">Пусконаладка и испытания</span>
+        <span class="chip l3">Серверы</span>
+        <span class="chip l2">СКС, обжим кабелей</span>
+        <span class="chip l2">Эксплуатация БПЛА</span>
+        <span class="chip l1">Микроконтроллеры STM32</span>
+      </div>
+      <div class="facts">
+        <span class="badge">Английский · B1</span>
+        <span class="badge">Служба в ВС РФ · 2012–2015</span>
+        <span class="badge">Дата рождения · 06.04.1993</span>
+      </div>
     </div>
-    <p style="margin-top:18px"><b>Английский:</b> B1 — средний<br><b>Служба в ВС РФ:</b> 09.2012 — 01.2015</p>
   </section>
 
   <footer>Буду рад обсудить возможности сотрудничества!</footer>
