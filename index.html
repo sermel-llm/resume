@@ -19,14 +19,35 @@
 <meta name="twitter:title" content="Мельников Сергей Андреевич">
 <meta name="twitter:description" content="Инженер по пусконаладке и испытаниям">
 <meta name="twitter:image" content="https://sermel-llm.github.io/resume/og-image.png?v=2">
+<script>
+  (function () { var t = null; try { t = localStorage.getItem("cv-theme"); } catch (e) {}
+    if (t === "business") document.documentElement.setAttribute("data-theme", "business"); })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0b0a0d; --card: #17161b; --row: #1c1b21; --line: #2a2930;
     --text: #f2f2f4; --muted: #9b9aa3; --dim: #6c6b74;
-    --green: #10c48a; --blue: #2aa8e0; --violet: #8b5cf6; --amber: #f5b014; --pink: #f0386b; --orange: #ff7a1a;
+    --green: #10c48a; --soft: rgba(16,196,138,.12); --ring: rgba(16,196,138,.45);
+    --p: #d6d5db; --li: #cfced5; --badge: #0f0e12; --nowbg: rgba(15,14,18,.85);
+    --l4: #10c48a; --l4t: #04140e; --l3: #0c8f64; --l3t: #eafff6; --l2: #0d5a41; --l2t: #d7f5ea; --l1: #123a2e; --l1t: #b9dccf; --blue: #2aa8e0; --violet: #8b5cf6; --amber: #f5b014; --pink: #f0386b; --orange: #ff7a1a;
   }
+  html[data-theme="business"] {
+    --bg: #f3f4f7; --card: #ffffff; --row: #ffffff; --line: #e2e5eb;
+    --text: #16202e; --muted: #5d6677; --dim: #a4abb8;
+    --green: #1f4fa3; --soft: rgba(31,79,163,.09); --ring: rgba(31,79,163,.40);
+    --p: #2c3444; --li: #2c3444; --badge: #eef1f6;
+    --l4: #1f4fa3; --l4t: #fff; --l3: #4a74c4; --l3t: #fff; --l2: #a9c0e8; --l2t: #12244a; --l1: #dde6f5; --l1t: #1f3360;
+  }
+  html[data-theme="business"] .row, html[data-theme="business"] .stat, html[data-theme="business"] .panel, html[data-theme="business"] .tile
+    { border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+  body, .row, .stat, .panel, .tile, .pill, .badge, .chip { transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
+  .switch { display: inline-flex; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+  .switch button { font: inherit; font-size: 13px; font-weight: 500; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+    background: transparent; color: var(--muted); transition: background-color .3s ease, color .3s ease; }
+  .switch button[aria-pressed="true"] { background: var(--green); color: var(--l4t); }
+  .switch button:not([aria-pressed="true"]):hover { color: var(--text); }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -46,8 +67,8 @@
   .contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
   .pill svg { width: 15px; height: 15px; stroke: var(--muted); transition: stroke .3s ease; }
   a.pill { transition: background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease; }
-  a.pill:hover, a.pill:focus-visible { background: rgba(16,196,138,.12); border-color: rgba(16,196,138,.45);
-    color: var(--green); box-shadow: 0 0 14px rgba(16,196,138,.15); outline: none; }
+  a.pill:hover, a.pill:focus-visible { background: var(--soft); border-color: var(--ring);
+    color: var(--green); box-shadow: 0 0 14px var(--soft); outline: none; }
   a.pill:hover svg, a.pill:focus-visible svg { stroke: var(--green); }
 
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
@@ -62,14 +83,14 @@
   .sec-sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
   section { margin-bottom: 36px; }
   .panel { background: var(--card); border-radius: 22px; padding: 22px; }
-  .panel p { margin: 0 0 10px; color: #d6d5db; }
+  .panel p { margin: 0 0 10px; color: var(--p); }
   .panel p:last-child { margin: 0; }
 
   .row { background: var(--row); border-radius: 24px; padding: 14px 18px 14px 14px; margin-bottom: 10px;
          display: grid; grid-template-columns: 48px 1fr auto; gap: 14px; align-items: start; }
   .ico { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; }
   .ico svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .c-green  { background: rgba(16,196,138,.12); } .c-green svg  { stroke: var(--green); }
+  .c-green  { background: var(--soft); } .c-green svg  { stroke: var(--green); }
   .c-blue   { background: rgba(42,168,224,.12); } .c-blue svg   { stroke: var(--blue); }
   .c-violet { background: rgba(139,92,246,.14); } .c-violet svg { stroke: var(--violet); }
   .c-amber  { background: rgba(245,176,20,.12); } .c-amber svg  { stroke: var(--amber); }
@@ -77,12 +98,12 @@
   .row h3 { margin: 2px 0 0; font-size: 16px; font-weight: 500; }
   .meta { color: var(--muted); font-size: 13.5px; }
   .meta b { color: var(--text); font-weight: 500; }
-  .badge { background: #0f0e12; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600;
+  .badge { background: var(--badge); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600;
            white-space: nowrap; display: inline-flex; gap: 6px; align-items: center; color: var(--muted); }
   .badge.now { color: var(--text); }
   .badge.now::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }
   .row ul { margin: 8px 0 2px; padding: 0; list-style: none; }
-  .row li { position: relative; padding-left: 16px; margin: 4px 0; color: #cfced5; font-size: 14px; }
+  .row li { position: relative; padding-left: 16px; margin: 4px 0; color: var(--li); font-size: 14px; }
   .row li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--dim); }
   .role { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
   .role-h { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 14.5px; font-weight: 500; }
@@ -103,10 +124,10 @@
 
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { border-radius: 10px; padding: 6px 12px; font-size: 13.5px; font-weight: 500; }
-  .l4 { background: var(--green); color: #04140e; }
-  .l3 { background: #0c8f64; color: #eafff6; }
-  .l2 { background: #0d5a41; color: #d7f5ea; }
-  .l1 { background: #123a2e; color: #b9dccf; }
+  .l4 { background: var(--l4); color: var(--l4t); }
+  .l3 { background: var(--l3); color: var(--l3t); }
+  .l2 { background: var(--l2); color: var(--l2t); }
+  .l1 { background: var(--l1); color: var(--l1t); }
   .legend { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 12px; }
   .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
   .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
@@ -126,10 +147,14 @@
 <div class="wrap">
 
   <div class="top">
-    <img class="avatar" src="avatar.png" alt="Мельников Сергей" width="84" height="84">
+    <img class="avatar" id="avatar" src="avatar.png" alt="Мельников Сергей" width="84" height="84">
     <div class="who">
       <h1>Мельников Сергей Андреевич</h1>
       <div class="sub">Инженер по пусконаладке и испытаниям · г. Зеленоград</div>
+    </div>
+    <div class="switch no-print" role="group" aria-label="Стиль страницы">
+      <button type="button" data-set="tech">Технический</button>
+      <button type="button" data-set="business">Деловой</button>
     </div>
   </div>
 
@@ -250,7 +275,7 @@
     <div class="panel">
       <div class="panel-head">
         <div><h2 class="sec-title">Навыки</h2><p class="sec-sub" style="margin:0">Цвет показывает глубину практики</p></div>
-        <div class="legend">Меньше <i style="background:#123a2e"></i><i style="background:#0d5a41"></i><i style="background:#0c8f64"></i><i style="background:var(--green)"></i> Больше</div>
+        <div class="legend">Меньше <i style="background:var(--l1)"></i><i style="background:var(--l2)"></i><i style="background:var(--l3)"></i><i style="background:var(--l4)"></i> Больше</div>
       </div>
       <div class="chips">
         <span class="chip l4">Диагностика и ремонт</span>
@@ -274,5 +299,22 @@
 
   <footer>Буду рад обсудить возможности сотрудничества!</footer>
 </div>
+<script>
+  (function () {
+    var root = document.documentElement, img = document.getElementById("avatar");
+    var pics = { tech: "avatar.png", business: "avatar-business.png" };
+    function apply(t, save) {
+      if (t === "business") root.setAttribute("data-theme", "business"); else root.removeAttribute("data-theme");
+      img.src = pics[t];
+      document.querySelectorAll(".switch button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.set === t); });
+      if (save) { try { localStorage.setItem("cv-theme", t); } catch (e) {} }
+    }
+    apply(root.getAttribute("data-theme") === "business" ? "business" : "tech", false);
+    document.querySelectorAll(".switch button").forEach(function (b) {
+      b.addEventListener("click", function () { apply(b.dataset.set, true); });
+    });
+    new Image().src = pics.business; new Image().src = pics.tech;
+  })();
+</script>
 </body>
 </html>
