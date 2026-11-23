@@ -73,6 +73,9 @@
   .fb-title { font-weight: 600; font-size: 17px; }
   .fb-head span { color: var(--muted); font-size: 14px; }
   .fb-frame { background: #fff; border-radius: 20px; overflow: auto; min-height: 420px; flex: 1; }
+  .fb-foot { color: var(--muted); font-size: 13px; padding: 10px 6px 2px; }
+  .fb-foot a { color: var(--green); text-decoration: none; font-weight: 500; }
+  .fb-foot a:hover { text-decoration: underline; }
   .fb-frame iframe { display: block; width: 100%; max-width: 100%; min-height: 560px; border: 0; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
@@ -90,7 +93,8 @@
           border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; }
   .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
 
-  .contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .contacts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+  .contacts .pill { padding: 6px 12px; font-size: 13.5px; }
   .pill svg { width: 15px; height: 15px; stroke: var(--muted); transition: stroke .3s ease; }
   a.pill { transition: background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease; }
   a.pill:hover, a.pill:focus-visible { background: var(--soft); border-color: var(--ring);
@@ -399,6 +403,7 @@
       <div class="fb-frame">
         <iframe data-src="https://forms.yandex.ru/cloud/6b03fbb4c45c07e90b2a1d11?iframe=1" frameborder="0" name="ya-form-6b03fbb4c45c07e90b2a1d11" width="650" title="Форма обратной связи"></iframe>
       </div>
+      <div class="fb-foot">Форма не загрузилась? <a href="https://forms.yandex.ru/cloud/6b03fbb4c45c07e90b2a1d11/" target="_blank" rel="noopener">Открыть в новой вкладке ↗</a></div>
     </div>
   </dialog>
 
