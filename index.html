@@ -76,7 +76,9 @@
   .fb-foot { color: var(--muted); font-size: 13px; padding: 10px 6px 2px; }
   .fb-foot a { color: var(--green); text-decoration: none; font-weight: 500; }
   .fb-foot a:hover { text-decoration: underline; }
-  .fb-frame iframe { display: block; width: 100%; max-width: 100%; min-height: 560px; border: 0; }
+  .fb-frame { padding: 24px 28px 8px; display: flex; justify-content: center; align-items: flex-start; }
+  .fb-frame iframe { display: block; width: 100%; max-width: 600px; min-height: 480px; border: 0; margin: 0 auto; }
+  @media (max-width: 560px) { .fb-frame { padding: 16px 12px 4px; } }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
