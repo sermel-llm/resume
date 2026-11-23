@@ -67,6 +67,13 @@
   .lb-close { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--badge); color: var(--text);
     font-size: 20px; line-height: 1; cursor: pointer; transition: background-color .3s ease, color .3s ease, border-color .3s ease; flex-shrink: 0; }
   .lb-close:hover, .lb-close:focus-visible { background: var(--soft); border-color: var(--ring); color: var(--green); outline: none; }
+  .fb-box { width: min(92vw, 690px); max-height: 88vh; display: flex; flex-direction: column; background: var(--card);
+    border: 1px solid var(--line); border-radius: 28px; padding: 14px 14px 12px; box-shadow: 0 24px 60px rgba(0,0,0,.35); color: var(--text); }
+  .fb-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 4px 6px 12px; }
+  .fb-title { font-weight: 600; font-size: 17px; }
+  .fb-head span { color: var(--muted); font-size: 14px; }
+  .fb-frame { background: #fff; border-radius: 20px; overflow: auto; min-height: 420px; flex: 1; }
+  .fb-frame iframe { display: block; width: 100%; max-width: 100%; min-height: 560px; border: 0; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -240,6 +247,7 @@
     <a class="pill" href="tel:+79175523439"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>+7 917 552-34-39</a>
     <a class="pill" href="mailto:melnikov.partner@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>melnikov.partner@gmail.com</a>
     <a class="pill no-print" href="#" onclick="window.print();return false;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3"/></svg>Скачать PDF</a>
+    <a class="pill no-print" href="#" id="fbBtn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>Обратная связь</a>
   </div>
 
   <div class="stats">
@@ -382,6 +390,18 @@
     </figure>
   </dialog>
 
+  <dialog class="lightbox" id="fbDialog" aria-labelledby="fbTitle">
+    <div class="fb-box">
+      <div class="fb-head">
+        <div><div id="fbTitle" class="fb-title">Обратная связь</div><span>Оставьте сообщение — я отвечу</span></div>
+        <button type="button" class="lb-close" id="fbClose" aria-label="Закрыть">×</button>
+      </div>
+      <div class="fb-frame">
+        <iframe data-src="https://forms.yandex.ru/cloud/6b03fbb4c45c07e90b2a1d11?iframe=1" frameborder="0" name="ya-form-6b03fbb4c45c07e90b2a1d11" width="650" title="Форма обратной связи"></iframe>
+      </div>
+    </div>
+  </dialog>
+
   <footer>Буду рад обсудить возможности сотрудничества!</footer>
 </div>
 <script>
@@ -407,6 +427,19 @@
     lbImg.addEventListener("click", closeLb);
     lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
     lb.addEventListener("cancel", function (e) { e.preventDefault(); closeLb(); });
+    var fb = document.getElementById("fbDialog"), fbFrame = fb.querySelector("iframe");
+    function closeFb() { fb.classList.remove("show"); setTimeout(function () { if (fb.open) fb.close(); }, 300); }
+    document.getElementById("fbBtn").addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!fbFrame.src) {
+        fbFrame.src = fbFrame.dataset.src;
+        var sc = document.createElement("script"); sc.src = "https://forms.yandex.ru/_static/embed.js"; document.body.appendChild(sc);
+      }
+      fb.showModal(); requestAnimationFrame(function () { fb.classList.add("show"); });
+    });
+    document.getElementById("fbClose").addEventListener("click", closeFb);
+    fb.addEventListener("click", function (e) { if (e.target === fb) closeFb(); });
+    fb.addEventListener("cancel", function (e) { e.preventDefault(); closeFb(); });
     new Image().src = pics.business; new Image().src = pics.tech;
   })();
 </script>
